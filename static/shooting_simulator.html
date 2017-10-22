@@ -549,8 +549,12 @@ function canvasApp(){
 			setTextStyle();
 			context.fillText("你的得分是"+Math.floor(score)+"分",160,230);
 			var data={score: Math.floor(score)};
-			url=window.location.href;
-			$.post(url,data)
+			c=document.cookie;
+        		s=c.indexOf("name=");
+        		e=c.indexOf(";", s);
+         		if (e==-1) e=c.length;
+			var name=c.substring(s+5,e);
+			$.post('/f/writeLB?n='+name,data)
 			endLoaded=true;
 		}
 		else{
@@ -570,7 +574,7 @@ function canvasApp(){
 			setTextStyle();
 			context.font='20px sans';
 			context.fillText("Leader Board",150,10);
-			$.get('ld', function (board){
+			$.get('/f/readLB', function (board){
 				var e1,e2;
 				var j=0;
 				var s=true;
@@ -618,9 +622,12 @@ function canvasApp(){
 		var hitPoint;
 		hitPoint=[x+1467/2,y+525+d/2];
 		var delta={data:hitPoint[1]-tpy,type:condition};
-		var url=window.location.href;
-		name=url.substring("http://104.224.181.79/ss?n=".length);
-		$.post("http://104.224.181.79/dl?n="+name,delta)
+		c=document.cookie;
+                s=c.indexOf("name=");
+                e=c.indexOf(";", s);
+                if (e==-1) e=c.length;
+                var name=c.substring(s+5,e);
+		$.post("/f/writeData?n="+name,delta)
 		if((hitPoint[0]>=a[0])&&(hitPoint[0]<=a[2])&&(hitPoint[1]>=a[1])&&(hitPoint[1]<=a[3])){			
 			score+=100-50*(Math.abs(hitPoint[0]-tpx)/(-a[0]+a[2])+Math.abs(hitPoint[1]-tpy)/(-a[1]+a[3]));
 			return HIT;
