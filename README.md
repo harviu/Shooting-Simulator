@@ -8,7 +8,7 @@ This is a web based tank shooting simulator. The accuracy of the player is recor
 
 install uWSGI, nginx and flask on your server
 
-ss.conf is the nginx config file
+nginx.conf is the nginx config file
 
 uwsgi.ini is the uWSGI config file
 
