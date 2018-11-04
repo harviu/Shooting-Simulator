@@ -14,14 +14,12 @@
 window.addEventListener("load", eventWindowLoaded, false);
 function eventWindowLoaded(){
 	var box=document.getElementById("box")
-	console.log(document.cookie);
 	c=document.cookie;
 	s=c.indexOf("name=");
-	e=document.cookie.indexOf(";", s);
-	if (e==-1) e=document.cookie.length;
+	e=c.indexOf(";", s);
+	if (e==-1) e=c.length;
 	if(s!=-1){
 	box.value=(c.substring(s+5,e));
-	window.location.href="http://104.224.181.79/ss?n="+box.value;
 	}
 }
 
@@ -32,7 +30,7 @@ function myFunction() {
 　　_date.toGMTString();
 	var c="name="+name+";expires="+_date
 	document.cookie=c;
-	window.location.href="http://104.224.181.79/ss?n="+name;
+	window.location.href="/shooting_simulator.html";
 }
 </script>
 
